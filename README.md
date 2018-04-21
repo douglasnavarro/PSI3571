@@ -1,8 +1,8 @@
 # Regressor 'Lata de Sardinha':
 
-## 1. Motivação:
+# 1. Motivação:
 
-## 1.1. O problema:
+### 1.1. O problema:
 - ### Como saber se o metrô estará cheio antes de sair de casa?
   - Apesar de sabermos que em certos horários (pico) o metrô certamente estará cheio, o nível de lotação varia muito de maneira difícil de determinar, pois depende muito do comportamento das pessoas. Exemplos:
     - O metrô aparenta estar mais vazio nas sextas-feiras. Talvez seja porquê muitas pessoas vão ao trabalho de carro neste dia da semana.
@@ -10,12 +10,12 @@
     - Já foi observado que determinados eventos ao longo do ano fazem com o que o metrô fique bastante cheio de forma repentina (carnaval, dias de ENEM etc.)
 - ### Ou seja, **é difícil estabelecer um comportamento determinístico para a lotação do metrô**. Por isso, o uso de **dados e inteligência artificial** pode ser uma solução interessante.
 
-## 1.2. A recompensa:
+### 1.2. A recompensa:
 Uma ferramenta capaz de prever a lotação do metrô baseada em informações de  momentos anteriores poderia ajudar:
   - A operação do metrô a agir preventivamente para atender aumentos repentinos da demanda
   - O usuário a buscar horários melhores para utilizar o transporte.
 
-## 2. Dados:
+# 2. Dados:
 Foram encontrados [datasets sobre a demanda](https://transparencia.metrosp.com.br/dataset/demanda) no próprio site do metrô, mas estes dados apresentam baixa granularidade. São apresentados:
   - Passageiros transportados por linha em um mês do ano
   - Entrada de passageiros por estação no mês - média dos dias úteis
@@ -32,7 +32,7 @@ Como o nível de lotação do trem não é facilmente estimado, poderiamos pré-
 
 Parece inevitável, então, que deverá ser feita alguma coleta de dados.
 
-## 2.1 Coleta:
+### 2.1 Coleta:
 
 - Intuitivamente, uma pessoa é capaz de saber se o metrô está cheio olhando para o trem e vendo através das janelas a quanidade de pessoas. De forma análoga, podemos contar o número de cabeças/faces/pessoas reconhecidas em uma imagem para estimar uma situação de trem lotado.
 
