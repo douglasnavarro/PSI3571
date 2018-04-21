@@ -40,10 +40,8 @@ Parece inevitável, então, que deverá ser feita alguma coleta de dados.
 
 - A linha amarela utiliza trens mais modernos e apresenta aos usuários, através de monitores nas estações, o nível de lotação do próximo trem:
 
-<p align="center>
-    <img src="https://abrilvejasp.files.wordpress.com/2016/12/monitor_lotacao.jpeg?quality=70&strip=info&w=650&strip=info"/>
-</p>
-<p align="center>Imagem exibida nos monitores da linha amarela</p>
+<p align="center"><img src="https://abrilvejasp.files.wordpress.com/2016/12/monitor_lotacao.jpeg?quality=70&strip=info&w=650&strip=info"/></p>
+<p align="center">Imagem exibida nos monitores</p>
 
 Infelizmente estas imagens são apresentadas apenas nos monitores das estações. Não há qualquer informação online, a não ser o estado atual de operação das linhas (normal, paralisada, velocidade reduzida).
 
