@@ -64,19 +64,20 @@ A rede neural utilizada será da classe Multi-layer Perceptron, que utiliza o al
       - Faria Lima (6)
       - Pinheiros (7)
       - Butantâ (8)
-   - Timestamp AAAA-MM-DDTHH:MM:SS
-   - Lotação do trem em vagões (de 1 a 6)
-     - Portas 24 a 21
-     - Portas 20 a 17
-     - Portas 16 a 13
-     - Portas 12 a 09
-     - Portas 08 a 05
-     - Portas 04 a 01
+   - Timestamp em epoch (convertido de AAAA-MM-DDTHH:MM:SS)
 
 E proverá:
  - Saída:
    - Lotação do trem em vagões, dado um timestamp futuro
+    - Lotação do trem em vagões (de 1 a 6)
+      - Portas 24 a 21
+      - Portas 20 a 17
+      - Portas 16 a 13
+      - Portas 12 a 09
+      - Portas 08 a 05
+      - Portas 04 a 01
+
 
 ### 3.1 Implementação
 
-A implementação será realizada utilizando a linguagem de programação Python e o módulo PyBrain.
+A implementação será realizada utilizando a linguagem de programação Python e o módulo PyBrain. Inicialmente o treino será realizado apenas com uma estação.
