@@ -13,8 +13,10 @@ d2 = datetime.strptime('2018-04-30T23:59', '%Y-%m-%dT%H:%M')
 
 with open('fake_data.txt', 'w') as f:
     for i in range(10):
-        date = random_date(d1,d2).isoformat()
-        crowd_list = random.sample(range(1,7), 6)
+        date = random_date(d1,d2).isoformat()[:-3]
+        crowd_list = []
+        for j in range(6):
+            crowd_list.append(random.randint(1,6))
         crowd_str  = " ".join(str(x) for x in crowd_list)
         line = "0," + date + "," + crowd_str + "\n"
         f.write(line)
