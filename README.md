@@ -2,6 +2,8 @@
 
 # 1. Motivação:
 
+Aviso: Sempre que falamos em soluções ou melhorias para o metrô alguém diz: 'O problema é político. O sistema está subdimensionado. Basta o metrô ser construído e expandido no ritmo ideal e nenhum problema existiria.' E eu concordo. É verdade. Entretanto, este é o meu jeito de aliar a disciplina da Poli à solução de um problema real e que eu acredito que poderia ser utilizada por pelo menos uma pessoa: eu mesmo.
+
 ### 1.1. O problema:
 - ### Como saber se o metrô estará cheio antes de sair de casa?
   - Apesar de sabermos que em certos horários (pico) o metrô certamente estará cheio, o nível de lotação varia muito de maneira difícil de determinar, pois depende muito do comportamento das pessoas. Exemplos:
@@ -46,3 +48,35 @@ Parece inevitável, então, que deverá ser feita alguma coleta de dados.
 Infelizmente estas imagens são apresentadas apenas nos monitores das estações. Não há qualquer informação online, a não ser o estado atual de operação das linhas (normal, paralisada, velocidade reduzida).
 
 De todo modo, como estes níveis de lotação dos vagões são produzidos utilizando o sistema de amortecimento do trem e já foram validados com bastante tempo de uso, as imagens dos monitores são uma boa alternativa ao método de processamento de imagem para contagem de pessoas. O monitor já fornece níveis de lotação bem definidos para todo o trem.
+
+# 3. Rede neural:
+
+A rede neural utilizada será da classe Multi-layer Perceptron, que utiliza o algoritmo backpropagation para aprendizagem. Será realizada uma verificação utilizando a 'regra do perceptron' para **checar se os dados são linearmente separáveis.**
+
+ - Entradas:
+   - Estação:
+      - Luz (0)
+      - República (1)
+      - Higienópolis Mackenzie (2)
+      - Paulista (3)
+      - Oscar Freire (4)
+      - Fradique Coutinho (5)
+      - Faria Lima (6)
+      - Pinheiros (7)
+      - Butantâ (8)
+   - Timestamp AAAA-MM-DDTHH:MM:SS
+   - Lotação do trem em vagões (de 1 a 6)
+     - Portas 24 a 21
+     - Portas 20 a 17
+     - Portas 16 a 13
+     - Portas 12 a 09
+     - Portas 08 a 05
+     - Portas 04 a 01
+
+E proverá:
+ - Saída:
+   - Lotação do trem em vagões, dado um timestamp futuro
+
+### 3.1 Implementação
+
+A implementação será realizada utilizando a linguagem de programação Python e o módulo PyBrain.
