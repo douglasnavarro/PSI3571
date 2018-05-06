@@ -29,14 +29,13 @@ def get_operation_status(soup):
     'prata': ''
     }
 
-    status_amarela = soup.find('img', id="imageCurrentLineFourStatus")['alt'].encode('utf-8')
+    status['amarela'] = soup.find('img', id="imageCurrentLineFourStatus")['alt']
     # if('normal' in status_amarela):
     #     status_amarela = 'normal'
     # elif('reduzida' in status_amarela):
     #     status_amarela = 'velocidade reduzida'
     # else:
     #     status_amarela = 'interrompida'
-    status['amarela'] = status_amarela
 
     stations = soup.find_all('div', class_='estacao')
     for station in stations:
@@ -44,11 +43,8 @@ def get_operation_status(soup):
         if(len(name_and_status) == 2):
             name = name_and_status[0].text.lower()
             station_status = name_and_status[1].text.lower()
-            status[name] = station_status
-        #print(name, station_status)
-    
+            status[name] = station_status    
     return(status)
-
 
 def get_time_data(soup):
     div_list = soup.findAll('div', class_='titulo-operacao')
