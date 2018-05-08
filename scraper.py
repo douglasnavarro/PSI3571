@@ -5,7 +5,6 @@ import time
 import logging
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from oauth2client.client import OAuth2WebServerFlow
 import os
 
 lines_metro = ['azul', 'verde', 'vermelha', 'amarela', 'lilas', 'prata']
@@ -25,8 +24,20 @@ def init_sheet():
     # use creds to create a client to interact with the Google Drive API
     scope = ['https://spreadsheets.google.com/feeds',
             'https://www.googleapis.com/auth/drive']
-    
-    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+    headers = {
+            "type": os.environ.get('TYPE', None),
+            "project_id": os.environ.get('PROJECT_ID', None),
+            "private_key_id": os.environ.get('PRIVATE_KEY_ID', None),
+            "private_key": os.environ.get('PRIVATE_KEY', None),
+            "client_email": os.environ.get('CLIENT_EMAIL', None),
+            "client_id": os.environ.get('CLIENT_ID', None),
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://accounts.google.com/o/oauth2/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_x509_cert_url": os.environ.get('CLIENT_x509_CERT_URL', None)
+        }
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(headers, scope)
+    #creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
     client = gspread.authorize(creds)
     sheet = client.open_by_key(SPREADSHEET_ID).worksheet("data")
     return sheet
