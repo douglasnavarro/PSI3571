@@ -3,6 +3,10 @@ import re
 from bs4 import BeautifulSoup
 import time
 import logging
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+from oauth2client.client import OAuth2WebServerFlow
+import os
 
 lines_metro = ['azul', 'verde', 'vermelha', 'amarela', 'lilas', 'prata']
 lines_cptm  = ['rubi', 'diamante', 'esmeralda', 'turquesa', 'coral', 'safira']
@@ -15,6 +19,17 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 logging.basicConfig(level=logging.DEBUG)
 logger.info('Starting scraper')
+
+def init_sheet():
+    SPREADSHEET_ID = "19vBtt1j64Au01vJaVjyiNB5CiCqSlG7juUc6_VSALbg"
+    # use creds to create a client to interact with the Google Drive API
+    scope = ['https://spreadsheets.google.com/feeds',
+            'https://www.googleapis.com/auth/drive']
+    
+    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+    client = gspread.authorize(creds)
+    sheet = client.open_by_key(SPREADSHEET_ID).worksheet("data")
+    return sheet
 
 def get_operation_status(soup):
 
@@ -73,6 +88,8 @@ def get_time_data(soup):
         
     return {'line4':line4, 'metro':metro, 'cptm':cptm}
 
+sheet = init_sheet()
+
 while(True):
 
     try:
@@ -91,15 +108,23 @@ while(True):
     times = get_time_data(s)
     op_status = get_operation_status(s)
 
-    with open('data.txt', 'a') as d:
-        for line in lines_metro:
-            if(line == 'amarela'):
-                d.write('{},{},{}\n'.format(times['line4'],line, op_status[line]))
-            else:
-                d.write('{},{},{}\n'.format(times['metro'], line, op_status[line]))
-        for line in lines_cptm:
-            d.write('{},{},{}\n'.format(times['cptm'],line, op_status[line]))
-    
-    logger.info('Sleeping for 120 seconds')
-    time.sleep(120)
+    # with open('data.txt', 'a') as d:
+    #     for line in lines_metro:
+    #         if(line == 'amarela'):
+    #             d.write('{},{},{}\n'.format(times['line4'],line, op_status[line]))
+    #         else:
+    #             d.write('{},{},{}\n'.format(times['metro'], line, op_status[line]))
+    #     for line in lines_cptm:
+    #         d.write('{},{},{}\n'.format(times['cptm'],line, op_status[line]))
+
+    for line in lines_metro:
+        if(line == 'amarela'):
+            sheet.append_row([times['line4'], line, op_status[line]])
+        else:
+            sheet.append_row([times['metro'], line, op_status[line]])
+    for line in lines_cptm:
+        sheet.append_row([times['cptm'], line, op_status[line]])
+
+    logger.info('Sleeping for 300 seconds')
+    time.sleep(300)
     
